@@ -1,6 +1,6 @@
 ActiveAdmin.register Order do
 
-  permit_params :status, :pst_rate, :gst_rate, :hst_rate
+  permit_params :status, :pst_rate, :gst_rate, :hst_rate, :updated_at
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
