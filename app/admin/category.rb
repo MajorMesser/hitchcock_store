@@ -1,5 +1,6 @@
 ActiveAdmin.register Category do
 
+  permit_params :name, :description, :total_items
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
