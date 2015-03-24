@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   #ROUTE TO CONTACT AND ABOUT US
   get 'about' => 'about#show'
+  get 'contact' => 'contact#show'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
