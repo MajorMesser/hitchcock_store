@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   root to: 'products#index'
 
+  #PATH TO SHOW INDIVIDUAL PRODUCT
+  get 'products' => 'products#index'
+  get 'products/:id' => 'products#show', as: 'product', id: /\d+/
+
   #ROUTE TO CONTACT AND ABOUT US
   get 'about' => 'about#show'
   get 'contact' => 'contact#show'
