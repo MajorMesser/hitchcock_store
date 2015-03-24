@@ -1,1 +1,6 @@
 <p><%= link_to 'Home', root_path %></p>
+
+<h4><%= @product.name %></h4>
+<p>Category: <%= @product.category %></p>
+<p>Price: <%= number_to_currency @product.price %></p>
+<p><%= @product.description %></p>
