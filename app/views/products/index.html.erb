@@ -1,0 +1,9 @@
+<h2>Hitchcock Inc. MacGuffin Emporium</h2>
+
+<div id="product_list">
+  <ul>
+    <% @products.each do |product| %>
+        <li><%= product.name %></li>
+    <% end %>
+  </ul>
+</div>
