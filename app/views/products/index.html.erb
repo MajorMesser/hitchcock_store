@@ -1,9 +1,20 @@
 <h2>Hitchcock Inc. MacGuffin Emporium</h2>
 
 <div id="product_list">
-  <ul>
-    <% @products.each do |product| %>
-        <li><%= link_to product.name, product %></li>
-    <% end %>
-  </ul>
+  <table>
+    <thead>
+        <tr>
+          <td>Name</td>
+          <td>Price</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% @products.each do |product| %>
+         <tr>
+            <td><%= link_to product.name, product %></td>
+            <td><%= product.price %></td>
+         </tr>
+        <% end %>
+    </tbody>
+  </table>
 </div>
