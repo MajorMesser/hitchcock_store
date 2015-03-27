@@ -5,6 +5,7 @@
     <thead>
         <tr>
           <td>Name</td>
+          <td>Description</td>
           <td>Price</td>
         </tr>
     </thead>
@@ -12,9 +13,12 @@
         <% @products.each do |product| %>
          <tr>
             <td><%= link_to product.name, product %></td>
+            <td><%= product.description %></td>
             <td><%= product.price %></td>
          </tr>
         <% end %>
     </tbody>
   </table>
 </div>
+
+
