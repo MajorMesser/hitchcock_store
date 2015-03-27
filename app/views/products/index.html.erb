@@ -3,6 +3,7 @@
     <thead>
         <tr>
           <td>Name</td>
+          <td>Image</td>
           <td>Description</td>
           <td>Price</td>
         </tr>
@@ -11,6 +12,7 @@
         <% @products.each do |product| %>
          <tr>
             <td><%= link_to product.name, product %></td>
+            <td><%= image_tag product.image.thumb.url %></td>
             <td><%= product.description %></td>
             <td><%= product.price %></td>
          </tr>
