@@ -44,3 +44,5 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 # CarrierWave Gem
 gem 'carrierwave'
+# Image_Magick Gem
+gem 'mini_magick'
