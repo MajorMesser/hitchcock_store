@@ -46,3 +46,5 @@ gem 'devise'
 gem 'carrierwave'
 # Image_Magick Gem
 gem 'mini_magick'
+# Kaminari for pagination
+gem 'kaminari'
