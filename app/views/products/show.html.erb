@@ -2,7 +2,7 @@
 
 <div id="individual_product">
     <h4><%= @product.name %></h4>
-    <p>Category: <%= @product.category %></p>
+    <p>Category: <%= @product.category.name %></p>
     <p>Price: <%= number_to_currency @product.price %></p>
     <p><%= @product.description %></p>
 </div>
