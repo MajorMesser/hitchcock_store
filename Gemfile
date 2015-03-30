@@ -48,3 +48,5 @@ gem 'carrierwave'
 gem 'mini_magick'
 # Kaminari for pagination
 gem 'kaminari'
+# Rubocop
+gem 'rubocop', require: false
