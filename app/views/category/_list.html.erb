@@ -1,8 +1,9 @@
 <div id="category_list">
   <ul>
     <%= form_tag root_path do %>
-        <%= text_field_tag 'query', 'Search here'%>
+        <%= text_field_tag 'query'%>
           <select name='category_id'>
+            <option value="0">All</option>
             <%= options_from_collection_for_select(@categories, 'id', 'name') %>
             <%= submit_tag 'Search'%>
           </select>
