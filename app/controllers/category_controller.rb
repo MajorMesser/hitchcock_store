@@ -5,8 +5,8 @@ class CategoryController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
-    @products = Product.find(params[:id])
+    @categories = Category.all
+    @products = Product.where(:category_id == params[:id])
   end
 
 end
