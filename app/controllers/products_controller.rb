@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.where("category_id = #{params[:category_id]}")
+    @products = Product.where("name LIKE '%#{params[:query]}%'").page(params[:page]).per(3)
+    @categories = Category.all
   end
 end
