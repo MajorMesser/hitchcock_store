@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get 'products' => 'products#index'
   get 'products/:id' => 'products#show', as: 'product', id: /\d+/
 
+  #PATH TO SHOW PRODUCTS CATEGORICALLY
+  get 'category/:id' => 'category#show', as: 'category', id: /\d+/
+
   #ROUTE TO CONTACT AND ABOUT US
   get 'about' => 'about#show'
   get 'contact' => 'contact#show'
