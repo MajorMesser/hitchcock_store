@@ -2,9 +2,7 @@
   <ul>
     <%= form_tag root_path %>
         <select name='category_id'>
-          <%= @categories.each do |category| %>
-              <option value="<%= category.id %>"><%= category.name %></option>
-          <% end %>
+            <%= options_from_collection_for_select(@categories, 'id', 'name') %>
           <%= submit_tag value='Search' %>
         </select>
   </ul>

@@ -9,6 +9,5 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.find()
   end
 end
