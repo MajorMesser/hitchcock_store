@@ -16,4 +16,14 @@ class ProductsController < ApplicationController
     end
     @categories = Category.all
   end
+
+  def sale_filter
+    @products = Product.where("CAST(price AS STRING) LIKE '%88'").page(params[:page]).per(3)
+    @categories = Category.all
+  end
+
+  def new_filter
+    @products = Product.where("created_at < #{1.week.ago}")
+    @categories =  Category.all
+  end
 end
