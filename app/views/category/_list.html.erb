@@ -1,12 +1,11 @@
 <div id="category_list">
   <ul>
-    <%= form_tag root_path %>
-        <%= text_field_tag 'name', 'Search here'%>
-    <label>
-      <select name='category_id'>
-        <%= options_from_collection_for_select(@categories, 'id', 'name') %>
-        <%= submit_tag value='Search' %>
-      </select>
-    </label>
+    <%= form_tag root_path do %>
+        <%= text_field_tag 'query', 'Search here'%>
+          <select name='category_id'>
+            <%= options_from_collection_for_select(@categories, 'id', 'name') %>
+            <%= submit_tag 'Search'%>
+          </select>
+    <% end %>
   </ul>
 </div>
