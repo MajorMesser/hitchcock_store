@@ -5,6 +5,10 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+    @product = Product.where(:category_id => params[:id])
+  end
+
+  def search
+    @products = Product.find()
   end
 end

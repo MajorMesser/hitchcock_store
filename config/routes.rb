@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   #PATH TO SHOW PRODUCTS CATEGORICALLY
   get 'category/:id' => 'category#show', as: 'category', id: /\d+/
 
+  #PATH TO PRODUCT SEARCH
+  get 'product/search' => 'product#search'
+
   #ROUTE TO CONTACT AND ABOUT US
   get 'about' => 'about#show'
   get 'contact' => 'contact#show'
