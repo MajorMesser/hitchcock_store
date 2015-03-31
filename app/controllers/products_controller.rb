@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
   end
 
   def new_filter
-    @products = Product.where("created_at > :date", :date => 2.days.ago).page(params[:page]).per(3)
+    @products = Product.where('created_at > :date', :date => 2.days.ago).page(params[:page]).per(3)
     @categories =  Category.all
   end
 end
