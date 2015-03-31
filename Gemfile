@@ -50,3 +50,5 @@ gem 'mini_magick'
 gem 'kaminari'
 # Rubocop
 gem 'rubocop', require: false
+# Ransack
+gem 'ransack'
