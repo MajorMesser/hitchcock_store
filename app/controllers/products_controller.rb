@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.where(:category_id => params[:id])
+    @products = Product.where(:category_id => params[:id])
   end
 
   def search
