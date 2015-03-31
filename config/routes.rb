@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'category/:id' => 'category#show', as: 'category', id: /\d+/
 
   #PATH TO PRODUCT SEARCH
-  get 'product/search' => 'product#search'
+  match '/' => 'products#search', :as => 'search_results', :via => :post
 
   #ROUTE TO CONTACT AND ABOUT US
   get 'about' => 'about#show'
