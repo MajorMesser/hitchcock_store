@@ -3,23 +3,25 @@
     <li><%= link_to 'Items on Sale', 'sale_filter.html.erb' %></li>
     <li><%= link_to 'Recently Added', 'new_filter.html.erb' %></li>
   </ul>
-  <table>
-    <thead>
-    <tr>
-      <td>Name</td>
-      <td>Image</td>
-      <td>Description</td>
-      <td>Price</td>
-    </tr>
-    </thead>
-    <tbody>
-    <% @products.each do |product| %>
+  <% if @products.count > 0 %>
+      <table>
+        <thead>
         <tr>
-          <td><%= link_to product.name, product %></td>
-          <td><%= image_tag product.image.thumb.url %></td>
-          <td><%= product.description %></td>
-          <td><%= product.price %></td>
+          <td>Name</td>
+          <td>Image</td>
+          <td>Description</td>
+          <td>Price</td>
         </tr>
+        </thead>
+        <tbody>
+        <% @products.each do |product| %>
+            <tr>
+              <td><%= link_to product.name, product %></td>
+              <td><%= image_tag product.image.thumb.url %></td>
+              <td><%= product.description %></td>
+              <td><%= product.price %></td>
+            </tr>
+        <% end %>
     <% end %>
     <%= paginate @products %>
     <%= page_entries_info @products %>
