@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   match '/new_filter.html.erb' => 'products#new_filter', as: 'new_filter', :via => :get
 
   #PATH TO ADD ITEM TO CART
-  match '/products/add' => 'products#add_to_cart', id: /\d+/, :via => :get
+  match '/products/add/:id' => 'products#add_to_cart', as: 'add_to_cart', id: /\d+/, :via => :get
 
   #ROUTE TO CONTACT AND ABOUT US
   get 'about' => 'about#show'

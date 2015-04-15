@@ -1,0 +1,20 @@
+<div id="cart">
+    <table id="cart_display">
+        <thead>
+            <tr>
+              <td>Shopping Cart</td>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+              <td>Total Items in Cart: <%= session[:cart].count %></td>
+            </tr>
+            <tr>
+              <td>Total Cost: </td>
+            </tr>
+        </tfoot>
+        <tbody>
+        </tbody>
+      <%= session[:cart].inspect %>
+    </table>
+</div>
