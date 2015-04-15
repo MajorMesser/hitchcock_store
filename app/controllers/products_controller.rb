@@ -26,4 +26,9 @@ class ProductsController < ApplicationController
     @products = Product.where('created_at > :date', :date => 2.days.ago).page(params[:page]).per(3)
     @categories =  Category.all
   end
+
+  def add_to_cart
+    session[:cart] << Product.where("id = '#{params[:id]}'")
+    redirect_to root_path
+  end
 end
