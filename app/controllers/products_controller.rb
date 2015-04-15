@@ -2,6 +2,13 @@ class ProductsController < ApplicationController
   def index
     @products = Product.order('name').page(params[:page]).per(3)
     @categories = Category.all
+    @cart_items = session[:cart].map do |key|
+      Product.find(key)
+    end
+    @sum = 0
+    @cart_items.each do |item|
+      @sum += item.price
+    end
   end
 
   def show

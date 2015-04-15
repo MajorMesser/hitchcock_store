@@ -7,14 +7,19 @@
         </thead>
         <tfoot>
             <tr>
-              <td>Total Items in Cart: <%= session[:cart].count %></td>
+              <td>Total Items in Cart: <%= @cart_items.count %></td>
             </tr>
             <tr>
-              <td>Total Cost: </td>
+              <td>Total Cost: <%= @sum %></td>
             </tr>
         </tfoot>
         <tbody>
+            <% @cart_items.each do |item| %>
+            <tr>
+              <td><%= item.name %></td>
+              <td><%= number_to_currency item.price %></td>
+            </tr>
+            <% end %>
         </tbody>
-      <%= session[:cart].inspect %>
     </table>
 </div>

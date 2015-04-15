@@ -19,7 +19,7 @@
               <td><%= link_to product.name, product %></td>
               <td><%= image_tag product.image.thumb.url %></td>
               <td><%= product.description %> <%= link_to 'Add to Cart', add_to_cart_path(:id => product.id) %></td>
-              <td><%= product.price %></td>
+              <td><%= number_to_currency product.price %></td>
             </tr>
         <% end %>
     <% end %>
