@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
     @cart_items = session[:cart].map do |key|
       Product.find(key)
     end
+    session[:line_items] = @cart_items
     @sum = 0
     @cart_items.each do |item|
       @sum += item.price
@@ -36,6 +37,28 @@ class ProductsController < ApplicationController
 
   def add_to_cart
     session[:cart] << params[:id]
+    redirect_to root_path
+  end
+
+  def checkout
+    @cart_items = session[:cart].map do |key|
+      Product.find(key)
+    end
+    @sum = 0
+    @cart_items.each do |item|
+      @sum += item.price
+    end
+    @provinces = Province.all
+  end
+
+  def create
+    @cart_items = session[:cart].map do |key|
+      Product.find(key)
+    end
+
+
+
+    reset_session
     redirect_to root_path
   end
 end

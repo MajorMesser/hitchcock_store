@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   #PATH TO ADD ITEM TO CART
   match '/products/add/:id' => 'products#add_to_cart', as: 'add_to_cart', id: /\d+/, :via => :get
 
+  #PATH TO CHECKOUT
+  get '/products/checkout' => 'products#checkout', as: 'checkout'
+  match '/products/create' => 'products#create', as: 'create', :via => :get
+
   #ROUTE TO CONTACT AND ABOUT US
   get 'about' => 'about#show'
   get 'contact' => 'contact#show'
