@@ -56,31 +56,31 @@ class ProductsController < ApplicationController
       Product.find(key)
     end
 
-    @customer = Customer.build
-    @customer.province = params[:province]
+    @customer = Customer.new
+    @customer.province_id = params[:province]
     @customer.first_name = params[:first_name]
     @customer.last_name = params[:last_name]
     @customer.address = params[:address]
     @customer.city = params[:city]
-    @customer.country = params[:country]
     @customer.postal_code = params[:postal_code]
-    @customer.save
+    @customer.email = params[:email]
 
-    @order = @customer.orders.build
-    @order.status = 'pending'
-    @order.gst_rate = @order.customer.province.gst
-    @order.pst_rate = @order.customer.province.pst
-    @order.hst_rate = @order.customer.province.hst
-    @order.save
-
-    @cart_items.each do |item|
-      @line_item = @order.line_items.build
-      @line_item.quantity = 1
-      @line_item.product = item
-      @line_item.price = item.price
-      @line_item.save
+    if @customer.save!
+      @order = @customer.orders.build
+      @order.status = 'pending'
+      @order.gst_rate = @customer.province.gst
+      @order.pst_rate = @customer.province.pst
+      @order.hst_rate = @customer.province.hst
+      if @order.save!
+        @cart_items.each do |item|
+          @line_item = @order.line_items.build
+          @line_item.quantity = 1
+          @line_item.product = item
+          @line_item.price = item.price
+          @line_item.save!
+        end
+      end
     end
-
     reset_session
     redirect_to root_path
   end

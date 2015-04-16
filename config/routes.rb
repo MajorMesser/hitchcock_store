@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   #PATH TO CHECKOUT
   get '/products/checkout' => 'products#checkout', as: 'checkout'
-  match '/products/create' => 'products#create', as: 'create', :via => :get
+  match '/products/create.html.erb' => 'products#create', as: 'create', :via => :post
 
   #ROUTE TO CONTACT AND ABOUT US
   get 'about' => 'about#show'
