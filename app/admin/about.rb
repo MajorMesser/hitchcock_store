@@ -1,5 +1,4 @@
 ActiveAdmin.register About do
-
   permit_params :title, :description, :created_at, :updated_at
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -13,6 +12,4 @@ ActiveAdmin.register About do
   #   permitted << :other if resource.something?
   #   permitted
   # end
-
-
 end

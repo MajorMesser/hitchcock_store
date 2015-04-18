@@ -2,9 +2,7 @@ class ProductsController < ApplicationController
   def index
     @products = Product.order('name').page(params[:page]).per(3)
     @categories = Category.all
-    @cart_items = session[:cart].map do |key|
-      Product.find(key)
-    end
+    @cart_items = get_cart_items
     session[:line_items] = @cart_items
     @sum = 0
     @cart_items.each do |item|
@@ -13,14 +11,15 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @products = Product.where(:id => params[:id])
+    @product = Product.where(id: params[:id])
   end
 
   def search
     if params[:category_id].to_i == 0
       @products = Product.where("name LIKE '%#{params[:query]}%'").page(params[:page]).per(3)
-    else
-      @products = Product.where("name LIKE '%#{params[:query]}%' and category_id = #{params[:category_id]}").page(params[:page]).per(3)
+      else
+      @products = Product.where("name LIKE '%#{params[:query]}%' and category_id =
+#{params[:category_id]}").page(params[:page]).per(3)
     end
     @categories = Category.all
   end
@@ -65,13 +64,13 @@ class ProductsController < ApplicationController
     @customer.postal_code = params[:postal_code]
     @customer.email = params[:email]
 
-    if @customer.save!
+    if @customer.save
       @order = @customer.orders.build
       @order.status = 'pending'
       @order.gst_rate = @customer.province.gst
       @order.pst_rate = @customer.province.pst
       @order.hst_rate = @customer.province.hst
-      if @order.save!
+      if @order.save
         @cart_items.each do |item|
           @line_item = @order.line_items.build
           @line_item.quantity = 1
@@ -83,5 +82,12 @@ class ProductsController < ApplicationController
     end
     reset_session
     redirect_to root_path
+    flash[:alert] = 'Order successfully placed'
+  end
+
+  private def get_cart_items
+    session[:cart].map do |key|
+      items = Product.find(key)
+    end
   end
 end
