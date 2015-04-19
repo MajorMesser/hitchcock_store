@@ -29,7 +29,7 @@ ActiveAdmin.register_page "Dashboard" do
             'Sub-Total'
           end
           td do
-            'Grant Total'
+            'Grand Total'
           end
         end
       end
@@ -52,7 +52,13 @@ ActiveAdmin.register_page "Dashboard" do
               number_to_currency(order.line_items.sum(:price))
             end
             td do
-              number_to_currency(order.line_items.sum(:price) + order.line_items.sum(:price) * order.customer.province.hst)
+              if order.hst_rate > 0
+                number_to_currency(order.line_items.sum(:price) + order.line_items.sum(:price) * order.hst_rate)
+              else
+                number_to_currency(order.line_items.sum(:price) +
+                                    order.line_items.sum(:price) * order.gst_rate +
+                                    order.line_items.sum(:price) + order.pst_rate)
+              end
             end
           end
           tr do
