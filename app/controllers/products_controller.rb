@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   def index
     @products = Product.order('name').page(params[:page]).per(3)
     @categories = Category.all
-    @cart_items = get_cart_items
+    @cart_items = retrieve_cart_items
     session[:line_items] = @cart_items
     @sum = 0
     @cart_items.each do |item|
@@ -17,9 +17,8 @@ class ProductsController < ApplicationController
   def search
     if params[:category_id].to_i == 0
       @products = Product.where("name LIKE '%#{params[:query]}%'").page(params[:page]).per(3)
-      else
-      @products = Product.where("name LIKE '%#{params[:query]}%' and category_id =
-#{params[:category_id]}").page(params[:page]).per(3)
+    else
+      @products = category_search
     end
     @categories = Category.all
   end
@@ -85,9 +84,14 @@ class ProductsController < ApplicationController
     flash[:alert] = 'Order successfully placed'
   end
 
-  private def get_cart_items
+  private def category_search
+    Product.where("name LIKE '%#{params[:query]}%' and category_id =
+  #{params[:category_id]}").page(params[:page]).per(3)
+  end
+
+  private def retrieve_cart_items
     session[:cart].map do |key|
-      items = Product.find(key)
+      Product.find(key)
     end
   end
 end
