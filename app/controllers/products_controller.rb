@@ -39,9 +39,7 @@ class ProductsController < ApplicationController
   end
 
   def checkout
-    @cart_items = session[:cart].map do |key|
-      Product.find(key)
-    end
+    @cart_items = retrieve_cart_items
     @sum = 0
     @cart_items.each do |item|
       @sum += item.price
@@ -50,9 +48,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @cart_items = session[:cart].map do |key|
-      Product.find(key)
-    end
+    @cart_items = retrieve_cart_items
 
     @customer = Customer.new
     @customer.province_id = params[:province]
