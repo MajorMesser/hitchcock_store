@@ -56,8 +56,8 @@ ActiveAdmin.register_page "Dashboard" do
                 number_to_currency(order.line_items.sum(:price) + order.line_items.sum(:price) * order.hst_rate)
               else
                 number_to_currency(order.line_items.sum(:price) +
-                                    order.line_items.sum(:price) * order.gst_rate +
-                                    order.line_items.sum(:price) + order.pst_rate)
+                                    (order.line_items.sum(:price) * order.gst_rate) +
+                                    (order.line_items.sum(:price) * order.pst_rate))
               end
             end
           end

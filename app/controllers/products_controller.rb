@@ -49,31 +49,11 @@ class ProductsController < ApplicationController
 
   def create
     @cart_items = retrieve_cart_items
-
-    @customer = Customer.new
-    @customer.province_id = params[:province]
-    @customer.first_name = params[:first_name]
-    @customer.last_name = params[:last_name]
-    @customer.address = params[:address]
-    @customer.city = params[:city]
-    @customer.postal_code = params[:postal_code]
-    @customer.email = params[:email]
-
-    if @customer.save
-      @order = @customer.orders.build
-      @order.status = 'pending'
-      @order.gst_rate = @customer.province.gst
-      @order.pst_rate = @customer.province.pst
-      @order.hst_rate = @customer.province.hst
-      if @order.save
-        @cart_items.each do |item|
-          @line_item = @order.line_items.build
-          @line_item.quantity = 1
-          @line_item.product = item
-          @line_item.price = item.price
-          @line_item.save!
-        end
-      end
+    @customer = Customer.new_customer(params)
+    @order = Order.new_order(@customer)
+    @cart_items.each do |item|
+      @line_item = LineItem.new_line_item(item, @order)
+      @line_item.save!
     end
     reset_session
     redirect_to root_path
